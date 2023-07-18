@@ -16,7 +16,7 @@ class ProductDetailRepository
         $codeArray = array(
             'access_token' => $token,
             'offerId' => $id,
-            'offerUrl' => "https://detail.1688.com/offer/670272731661.htm"
+            'offerUrl' => "https://detail.1688.com/offer/" . $id . ".htm"
         );
         $_aop_signature = $signature->genSignature($api, $codeArray);
 
@@ -27,7 +27,7 @@ class ProductDetailRepository
             $data = [
                 'access_token' => $token,
                 'offerId' => $id,
-                'offerUrl' => 'https://detail.1688.com/offer/670272731661.htm',
+                'offerUrl' => "https://detail.1688.com/offer/" . $id . ".htm",
                 '_aop_signature' => $_aop_signature,
             ];
 

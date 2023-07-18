@@ -180,9 +180,9 @@ class Product extends Model
             ->count();
     }
 
-    public static function findByProductCode($code) {
+    public static function findByProductCode($product_id) {
         return self::query()
-            ->where('code', $code)
+            ->where('product_id', $product_id)
             ->where('status', 1)
             ->first();
     }

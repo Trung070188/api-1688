@@ -13,7 +13,7 @@ class Attribute extends Model
         return $this->hasMany(AttributeValue::class, 'attribute_id', 'attribute_id');
     }
 
-    public static function findByCode($code) {
-        return self::where('code', $code)->first();
+    public static function findById($attribute_id) {
+        return self::where('attribute_id', $attribute_id)->first();
     }
 }

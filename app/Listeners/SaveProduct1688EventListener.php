@@ -5,6 +5,8 @@ namespace App\Listeners;
 use App\Events\SaveProduct1688ToDbEvent;
 use App\Jobs\SaveProductToDbElimJob;
 use App\Services\Signature;
+use App\Services\Test;
+
 class SaveProduct1688EventListener
 {
     /**
@@ -21,7 +23,10 @@ class SaveProduct1688EventListener
     public function handle(SaveProduct1688ToDbEvent $event): void
     {
         $data = $event->result;
-        dispatch(new SaveProductToDbElimJob($data));
+        $test = new Test();
+        $kq = $test->test($data);
+        dd($kq);
+//        dispatch(new SaveProductToDbElimJob($data));
 
     }
 
