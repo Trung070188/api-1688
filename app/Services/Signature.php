@@ -4,35 +4,18 @@ namespace App\Services;
 
 class Signature
 {
-    public function genSignature($api, $param)
+    public function genSignature($api, $codeArray)
     {
-        $url = 'http://gw.api.alibaba.com/openapi/param2/1/';
         $appKey = env('APP_KEY_1688');
         $appSecret = env('SIGNING_KEY');
-        $apiInfo = $url . $api . $appKey . '?';
+        $apiInfo =$api . $appKey;
 
-        $code_arr = array(
-            'access_token=' => env('ACCESS_TOKEN_1688'),
-            'scenario=' => env('SCENARIO'),
-            'param=' => json_encode(array(
-                "keywords" => "pencil",
-                "categoryIds" => [],
-                "quantityBegin" => 1,
-                "priceStart" => "1",
-                "priceEnd" => "100",
-                "sortType" => "price",
-                "sortOrder" => null,
-                "filter" => ["shipIn48Hours", "powerMerchant"],
-                "pageSize" => 20,
-                "pageNum" => 1
-            ))
-        );
+        $code_arr = $codeArray;
         $aliParams = array();
         foreach ($code_arr as $key => $val)
         {
             $aliParams[] = $key . $val;
         }
-        dd($aliParams);
 
         sort($aliParams);
         $sign_str = join('', $aliParams);

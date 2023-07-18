@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\SearchKeywordEvent;
-use App\Listeners\SearchKeywordEventListener;
+use App\Events\SaveProduct1688ToDbEvent;
+use App\Listeners\SaveProduct1688EventListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,8 +20,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        SearchKeywordEvent::class => [
-            SearchKeywordEventListener::class,
+        SaveProduct1688ToDbEvent::class => [
+            SaveProduct1688EventListener::class,
         ],
     ];
 
