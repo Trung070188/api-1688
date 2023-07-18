@@ -3,11 +3,16 @@
 namespace App\Repositories\SearchKeyword;
 
 use App\Services\Signature;
+use App\Services\TranslateLanguageByGoogle;
 
 class SearchKeywordRepository
 {
     public function ApiSearchKeyword1688($keyword, $pageNum)
     {
+        $trans = new TranslateLanguageByGoogle();
+
+        $keyword = $trans->translateLanguage($keyword, 'zh');
+
         $token = env('ACCESS_TOKEN_1688');
         $signature = new Signature();
         $api = 'param2/1/com.alibaba.fenxiao/cross.keywords.search/';

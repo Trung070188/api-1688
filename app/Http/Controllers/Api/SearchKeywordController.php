@@ -7,6 +7,7 @@ use App\Http\Resources\SearchKeywordResource;
 use App\Repositories\ProductDetail\ProductDetailRepository;
 use App\Repositories\SearchKeyword\SearchKeywordRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SearchKeywordController extends Controller
 {
@@ -27,8 +28,14 @@ class SearchKeywordController extends Controller
         $keyWord = $request->keyword;
         $pageNum = 1;
         $data = $this->searchKeywordRepository->ApiSearchKeyword1688($keyWord, $pageNum);
+        if(count($data['result']) > 2)
+        {
+            return SearchKeywordResource::collection($data['result']['result']);
 
-        return SearchKeywordResource::collection($data['result']['result']);
+        }
+        else {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm']);
+        }
     }
 
     /**

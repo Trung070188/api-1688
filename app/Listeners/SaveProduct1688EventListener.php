@@ -24,4 +24,5 @@ class SaveProduct1688EventListener
         dispatch(new SaveProductToDbElimJob($data));
 
     }
+
 }
