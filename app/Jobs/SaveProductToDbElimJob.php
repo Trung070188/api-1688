@@ -34,7 +34,7 @@ class SaveProductToDbElimJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $product =$this->product;
+        $product =$this->product['productInfo'];
         $trans = new TranslateLanguageByGoogle();
 
         // check product databse elim
