@@ -89,36 +89,35 @@ class SaveProductToDbElimJob implements ShouldQueue
                     $attribute->name_cn = $translatedAttribute['attributeName_cn'];
 
                     $attribute->save();
-                }
 
-                // save value attributes
-                $valueAtt = AttributeValue::findByValue($translatedAttribute['attributeID']);
-                if(!$valueAtt)
-                {
-                    $valueAttribute = new AttributeValue();
+                    // save value attributes
+                    $valueAtt = AttributeValue::findByValue($attribute->id);
+                    if(!$valueAtt)
+                    {
+                        $valueAttribute = new AttributeValue();
+                        $valueAttribute->attribute_id = $attribute->id;
+                        $valueAttribute->value = $translatedAttribute['value_vi'];
+                        $valueAttribute->value_en = $translatedAttribute['value_en'];
+                        $valueAttribute->value_cn = $translatedAttribute['value_cn'];
 
-                    $valueAttribute->attribute_id = $translatedAttribute['attributeID'];
-                    $valueAttribute->value = $translatedAttribute['value_vi'];
-                    $valueAttribute->value_en = $translatedAttribute['value_en'];
-                    $valueAttribute->value_cn = $translatedAttribute['value_cn'];
-
-                    $valueAttribute->save();
-                }
+                        $valueAttribute->save();
+                    }
 
 
-                // save product attributes
+                    // save product attributes
 
-                $productAtt = ProductAttribute::findById($productElim->id, $attribute->id);
+                    $productAtt = ProductAttribute::findById($productElim->id, $attribute->id);
 
-                if(!$productAtt)
-                {
-                    $productAttribute = new ProductAttribute();
+                    if(!$productAtt)
+                    {
+                        $productAttribute = new ProductAttribute();
 
-                    $productAttribute->product_id = $productElim->id;
-                    $productAttribute->attribute_id = $attribute->id;
+                        $productAttribute->product_id = $productElim->id;
+                        $productAttribute->attribute_id = $attribute->id;
 
-                    $productAttribute->save();
+                        $productAttribute->save();
 
+                    }
                 }
 
             }
