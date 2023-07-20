@@ -23,10 +23,8 @@ class SaveProduct1688EventListener
     public function handle(SaveProduct1688ToDbEvent $event): void
     {
         $data = $event->result;
-        $test = new Test();
-        $kq = $test->test($data);
-        dd($kq);
-//        dispatch(new SaveProductToDbElimJob($data));
+
+        dispatch(new SaveProductToDbElimJob($data));
 
     }
 
