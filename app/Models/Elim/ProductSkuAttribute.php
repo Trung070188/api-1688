@@ -8,8 +8,8 @@ class ProductSkuAttribute extends Model
 {
     protected $table = 'product_sku_attributes';
 
-    public static function findById($productId, $skuId, $code) {
+    public static function findById($productId, $skuId, $attributeValueId) {
         return self::where('product_id', $productId)->where('product_sku_id', $skuId)
-            ->where('code', $code)->first();
+            ->where('attribute_value_id', $attributeValueId)->first();
     }
 }
