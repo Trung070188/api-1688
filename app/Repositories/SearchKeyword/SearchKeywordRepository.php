@@ -19,7 +19,7 @@ class SearchKeywordRepository
 
         $param = json_encode(array(
             "keywords" => $keyword,
-            "pageSize" => 50,
+            "pageSize" => 20,
             "pageNum" => $pageNum ?? 1
         ), JSON_UNESCAPED_UNICODE);
 
@@ -39,7 +39,7 @@ class SearchKeywordRepository
                 'scenario' => env('SCENARIO'),
                 'param' => json_encode([
                     "keywords" => $keyword,
-                    "pageSize" => 50,
+                    "pageSize" => 20,
                     "pageNum" => $pageNum
                 ], JSON_UNESCAPED_UNICODE),
                 '_aop_signature' => $_aop_signature,

@@ -26,14 +26,23 @@ class SearchKeywordController extends Controller
     public function index(Request $request)
     {
         $keyWord = $request->keyword;
-        $pageNum = 1;
-        $data = $this->searchKeywordRepository->ApiSearchKeyword1688($keyWord, $pageNum);
-        if(count($data['result']) > 2)
-        {
-            return SearchKeywordResource::collection($data['result']['result']);
+        $pageNum = $request->page ?? 1;
+        $entry = $this->searchKeywordRepository->ApiSearchKeyword1688($keyWord, $pageNum);
+        if (count($entry['result']) > 2) {
+            $result = SearchKeywordResource::collection($entry['result']['result']);
+            $data = [
+                'data' => $result,
+                'productPaginate' => [
+                    'currentPage' => $entry['result']['pageInfo']['currentPage'],
+                    'lastPage' => $entry['result']['pageInfo']['totalPage']
+                ]
+            ];
+            return response()->json($data, 200);
 
         }
+
         else {
+
             return response()->json(['message' => 'Không tìm thấy sản phẩm']);
         }
     }
