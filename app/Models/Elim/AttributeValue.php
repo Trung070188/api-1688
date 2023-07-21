@@ -18,8 +18,8 @@ class AttributeValue extends Model
 {
     protected $table = 'attribute_values';
 
-    public static function findByValue($value, $id) {
-        return self::where('value_cn', $value)->where('attribute_id', $id)->first();
+    public static function findByValue($id) {
+        return self::where('attribute_id', $id)->first();
     }
 }
 
